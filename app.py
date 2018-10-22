@@ -10,10 +10,10 @@ db = SQLAlchemy(app)
 class Blogpost(db.Model):
     #Database columns
     id = db.Column(db.Integer,primary_key=True)
-    title = db.Column(db.String(100))
-    posted_on = db.Column(db.String(20))
+    title = db.Column(db.String(50))
+    posted_on = db.Column(db.DateTime)
     comments = db.Column(db.Integer)
-    content = db.Column(db.String(300))
+    content = db.Column(db.Text)
 
 @app.route('/')
 def index():
@@ -38,6 +38,10 @@ def services():
 @app.route('/work')
 def work():
     return render_template('work.html')
+
+@app.route('/addblogpost')
+def addblogpost():
+    return render_template('addblogpost.html')
 
 if __name__ == '__main__':
     app.run(debug = True)
