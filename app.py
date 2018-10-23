@@ -1,5 +1,6 @@
 from flask import Flask, render_template 
 from flask_sqlalchemy import SQLAlchemy 
+import utils
 
 app = Flask(__name__)
 
@@ -17,7 +18,7 @@ class Blogpost(db.Model):
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('index.html', blog_posts = utils.getBlogPosts())
 
 @app.route('/about')
 def about():
