@@ -1,4 +1,4 @@
-# import Blogpost
+from app import Blogpost
 # from flask_sqlalchemy import SQLAlchemy 
 
 def getBlogPosts():

@@ -1,6 +1,7 @@
-from flask import Flask, render_template 
+from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy 
 import utils
+import datetime
 
 app = Flask(__name__)
 
@@ -40,9 +41,19 @@ def services():
 def work():
     return render_template('work.html')
 
-@app.route('/addblogpost')
+@app.route('/blogPost')
+def addBlogPost():
+    return render_template('blogpost.html')
+
+@app.route('/addPost', methods=['POST'])
 def addblogpost():
-    return render_template('addblogpost.html')
+    title = request.form['title']
+    content = request.form['content']
+
+    # post = Blogpost(title=title, posted_on="Oct 23rd", comments=24, content=content )
+
+    # return render_template('addblogpost.html')
+    return '<h1>Title: {} Posted on: Oct 24th Comments: 21 Content: {}'.format(title,content)
 
 if __name__ == '__main__':
     app.run(debug = True)
